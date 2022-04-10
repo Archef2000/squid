@@ -8,7 +8,7 @@ then
 else
     if [ ! -z $USER_1 ]
   then
-    echo "$USER_1":$(openssl passwd -apr1 $PASS_1) > /etc/squid/passwords
+    echo "${USER_1:=user1}":$(openssl passwd -apr1 ${PASS_1:=passwd123}) > /etc/squid/passwords
   fi
   if [ ! -z $USER_2 ]
   then
