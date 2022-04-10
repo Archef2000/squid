@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ $AUTH == false ]
+then
+
+echo "http_port 3128
+http_access allow all" > /etc/squid/squid.conf
+
+else
+
+echo "auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwords
+auth_param basic realm proxy
+acl authenticated proxy_auth REQUIRED
+http_access allow authenticated
+http_port 3128
+http_access allow all" > /etc/squid/squid.conf
+
+fi
