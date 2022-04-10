@@ -1,3 +1,43 @@
+#/bin/sh
 echo "Preparing Squid"
-bash ./genconfig
+
+if [ "$AUTH" == "false" ]
+then
+  echo "http_port 3128
+  http_access allow all" > /etc/squid/squid.conf
+else
+    if [ ! -z $USER_1 ]
+  then
+    echo "$USER_1":$(openssl passwd -apr1 $PASS_1) > /etc/squid/passwords
+  fi
+  if [ ! -z $USER_2 ]
+  then
+    echo "$USER_1":$(openssl passwd -apr1 $PASS_1) > /etc/squid/passwords
+  fi
+  if [ ! -z $USER_3 ]
+  then
+    echo "$USER_1":$(openssl passwd -apr1 $PASS_1) > /etc/squid/passwords
+  fi
+  if [ ! -z $USER_4 ]
+  then
+    echo "$USER_1":$(openssl passwd -apr1 $PASS_1) > /etc/squid/passwords
+  fi
+  if [ ! -z $USER_5 ]
+  then
+    echo "$USER_1":$(openssl passwd -apr1 $PASS_1) > /etc/squid/passwords
+  fi
+  
+  echo "auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwords
+  auth_param basic realm proxy
+  acl authenticated proxy_auth REQUIRED
+  http_access allow authenticated
+  http_port 3128
+  http_access allow all" > /etc/squid/squid.conf
+fi
+
+if [ "$LOG" = "true" ]
+then
 squid -N $@
+else
+squid -N $@ 2> /dev/null
+fi
