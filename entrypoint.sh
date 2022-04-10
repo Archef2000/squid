@@ -3,7 +3,7 @@ echo "Preparing Squid"
 
 if [ "$AUTH" == "false" ]
 then
-  echo "http_port 3128
+  echo "http_port ${PORT:=3128})
   http_access allow all" > /etc/squid/squid.conf
 else
   
@@ -41,7 +41,7 @@ else
   auth_param basic realm proxy
   acl authenticated proxy_auth REQUIRED
   http_access allow authenticated
-  http_port 3128
+  http_port ${PORT:=3128})
   http_access allow all" > /etc/squid/squid.conf
 fi
 echo "Starting Squid"
