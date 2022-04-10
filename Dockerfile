@@ -1,8 +1,6 @@
 FROM alpine
 WORKDIR /etc/squid
-COPY run .
-COPY genuser .
-COPY genconfig .
-RUN apk add squid openssl bash && chmod +x run genuser genconfig
+COPY entrypoint.sh /entrypoint.sh
+RUN apk add squid openssl bash && chmod +x /entrypoint.sh 
 EXPOSE 3128
-CMD ["./run"]
+ENTRYPOINT /entrypoint.sh
