@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $AUTH == false ]
+if [ "$AUTH" == "false" ]
 then
 
 echo "http_port 3128
