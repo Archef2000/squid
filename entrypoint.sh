@@ -34,7 +34,7 @@ else
   http_port 3128
   http_access allow all" > /etc/squid/squid.conf
 fi
-
+echo "Starting Squid"
 if [ "$LOG" = "true" ]
 then
 squid -N $@
