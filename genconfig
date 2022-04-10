@@ -8,6 +8,7 @@ http_access allow all" > /etc/squid/squid.conf
 
 else
 
+bash ./genuser
 echo "auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwords
 auth_param basic realm proxy
 acl authenticated proxy_auth REQUIRED
