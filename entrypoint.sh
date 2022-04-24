@@ -18,11 +18,11 @@ else
 
   done
 
-  if [ ! -z $USER_1 ]
+  if [ -z $USER_1 ]
   then
     echo "Default User is "user1""
   fi
-  if [ ! -z $PASS_1 ]
+  if [ -z $PASS_1 ]
   then
     echo "Default Password is "passwd123""
   fi
