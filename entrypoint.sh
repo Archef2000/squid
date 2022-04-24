@@ -11,9 +11,10 @@ else
   for (( counter=1; counter<=N; counter++ ))
   do
       username=USER_${counter}
+      password=PASS_${counter}
       if [[ -n ${!username} ]]
       then
-          echo "$username:$(openssl passwd -apr1 "$PASS_1")" >> /etc/squid/passwords
+          echo "$username:$(openssl passwd -apr1 "$password")" >> /etc/squid/passwords
       fi
 
   done
