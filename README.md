@@ -1,5 +1,4 @@
 # squid-docker
-Docker container for Squid HTTP Proxy
 
 <a href="https://github.com/Archef2000/squid">Docker Container</a> for Squid HTTP Proxy
 
