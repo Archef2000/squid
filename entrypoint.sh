@@ -13,7 +13,7 @@ else
       username=USER_${counter}
       if [[ -n ${!username} ]]
       then
-          echo "$username:$(openssl passwd -apr1 "$PASS_1")" >> ./passwords
+          echo "$username:$(openssl passwd -apr1 "$PASS_1")" >> /etc/squid/passwords
       fi
 
   done
