@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo "Preparing Squid"
 
 if [ "$AUTH" == "false" ]
@@ -7,26 +7,16 @@ then
   http_access allow all" > /etc/squid/squid.conf
 else
   
-  if [ ! -z $USER_1 ]
-  then
-    echo "${USER_1:=user1}":$(openssl passwd -apr1 ${PASS_1:=passwd123}) > /etc/squid/passwords
-  fi
-  if [ ! -z $USER_2 ]
-  then
-    echo "$USER_1":$(openssl passwd -apr1 $PASS_1) > /etc/squid/passwords
-  fi
-  if [ ! -z $USER_3 ]
-  then
-    echo "$USER_1":$(openssl passwd -apr1 $PASS_1) > /etc/squid/passwords
-  fi
-  if [ ! -z $USER_4 ]
-  then
-    echo "$USER_1":$(openssl passwd -apr1 $PASS_1) > /etc/squid/passwords
-  fi
-  if [ ! -z $USER_5 ]
-  then
-    echo "$USER_1":$(openssl passwd -apr1 $PASS_1) > /etc/squid/passwords
-  fi
+  N=10
+  for (( counter=1; counter<=N; counter++ ))
+  do
+      username=USER_${counter}
+      if [[ -n ${!username} ]]
+      then
+          echo "$username:$(openssl passwd -apr1 "$PASS_1")" >> ./passwords
+      fi
+
+  done
 
   if [ ! -z $USER_1 ]
   then
