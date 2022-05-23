@@ -3,7 +3,7 @@ echo "Preparing Squid"
 
 if [ "$AUTH" == "false" ]
 then
-  echo "http_port ${PORT:=3128})
+  echo "http_port ${PORT:=3128}
   http_access allow all" > /etc/squid/squid.conf
 else
   
