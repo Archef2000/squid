@@ -10,7 +10,7 @@ else
   N=10
   for (( counter=1; counter<=N; counter++ ))
   do
-      username=USER_${counter}
+      username=user${counter}
       password=PASS_${counter}
       if [[ -n ${!username} ]]
       then
@@ -19,10 +19,6 @@ else
 
   done
 
-  if [ -z $USER_1 ]
-  then
-    echo "Default User is "user1""
-  fi
   if [ -z $PASS_1 ]
   then
     echo "Default Password is "passwd123""
